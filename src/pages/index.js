@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 
 export default function Home() {
@@ -73,16 +73,19 @@ export default function Home() {
                   <div className="card-text text-muted">
                     {chargingWindow ? (
                       <>
-                        <p className="fs-5 text-dark mb-2">
-                          {new Date(chargingWindow.start).toLocaleDateString()}
-                        </p>
-                        <h3 className="display-6 fw-bold text-dark">
-                          {new Date(chargingWindow.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                          {' - '}
-                          {new Date(chargingWindow.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </h3>
-                        <p className="mb-0 fs-5 mt-2">
-                          Clean energy: <strong>{chargingWindow.cleanEnergyPerc.toFixed(2)}%</strong>
+                        <div className="d-flex justify-content-center align-items-center gap-4 mb-3 mt-3">
+                          <div className="text-dark fs-4 fw-normal">
+                            {new Date(chargingWindow.start).toLocaleDateString()} <br />
+                            <strong>{new Date(chargingWindow.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}</strong>
+                          </div>
+                          <div className="text-muted fs-5 fw-light">do</div>
+                          <div className="text-dark fs-4 fw-normal">
+                            {new Date(chargingWindow.end).toLocaleDateString()} <br />
+                            <strong>{new Date(chargingWindow.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}</strong>
+                          </div>
+                        </div>
+                        <p className="mb-4 fs-5">
+                          Clean energy: <strong className="text-success">{chargingWindow.cleanEnergyPerc.toFixed(1)}%</strong>
                         </p>
                       </>
                     ) : (
@@ -107,6 +110,7 @@ export default function Home() {
                       <button
                         className="btn btn-success"
                         onClick={() => fetchNewWindow(hours)}
+                        disabled={hours < 1 || hours > 6}
                       >
                         Calculate
                       </button>
