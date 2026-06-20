@@ -16,8 +16,8 @@ export default function Home() {
   useEffect(() => {
     // Async function to fetch the data from the API
     async function fetchData() {
-      const response_energy_mix = await axios.get('http://localhost:8081/api/energy-mix');
-      const response_charging_window = await axios.get('http://localhost:8081/api/charging-window?hours=2');
+      const response_energy_mix = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/energy-mix');
+      const response_charging_window = await axios.get(process.env.NEXT_PUBLIC_API_URL + '/api/charging-window?hours=2');
 
       const rawDays = response_energy_mix.data.days;
       const coloredDays = rawDays.map(day => ({
@@ -37,7 +37,7 @@ export default function Home() {
   const fetchNewWindow = async (hours) => {
     // Async function to fetch the best time to charge for the given hours
     try {
-      const response = await axios.get(`http://localhost:8081/api/charging-window?hours=${hours}`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/charging-window?hours=${hours}`)
       setChargingWindow(response.data)
     }
     catch (error) {
