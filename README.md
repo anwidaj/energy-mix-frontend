@@ -4,7 +4,7 @@
 
 A simple web application that visualizes the United Kingdom's energy mix and helps users find the most eco-friendly time window to charge electric vehicles.
 
-## Live Demo
+## Live Application
 **[View Live Application](https://energy-mix-frontend-icpr.onrender.com/)**
 
 ## Features
@@ -39,3 +39,6 @@ A simple web application that visualizes the United Kingdom's energy mix and hel
 
 ## Cloud Deployment
 This application is deployed on Render.com as a **Web Service**. 
+
+## Check out the backend Github Repository
+**[View Github Backend Repository](https://github.com/anwidaj/energy-mix-backend)**
